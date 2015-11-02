@@ -1,0 +1,16 @@
+.a.class,
+.class.a,
+.class > .a {
+  color: blue;
+}
+.test:extend(.class) {} // this will NOT match the any selectors above
+
+*.class {
+  color: blue;
+}
+.noStar:extend(.class) {} // this will NOT match the *.class selector
+
+link:hover:visited {
+  color: blue;
+}
+.selector:extend(link:visited:hover) {}

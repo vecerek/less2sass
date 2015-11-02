@@ -1,0 +1,14 @@
+@mixin mixin($switch, $color) {
+  @if $switch == dark {
+    color: darken($color, 10%);
+  } @else if $switch == light {
+    color: lighten($color, 10%);
+  }
+
+  display: block;
+}
+
+$switch: light;
+.class {
+  @include mixin($switch, #888);
+}

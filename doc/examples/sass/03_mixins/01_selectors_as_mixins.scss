@@ -1,0 +1,21 @@
+@mixin class_a {
+  color: red;
+}
+@mixin id_b {
+  @include class_a;
+}
+.a, #b {
+  color: red;
+}
+.mixin-class {
+  @include class_a;
+}
+.mixin-id {
+  @include id_b;
+}
+
+// these two statements do the same thing:
+.my-class {
+  @include class_a();
+  @include class_a;
+}

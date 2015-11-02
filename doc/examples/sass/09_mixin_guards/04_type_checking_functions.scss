@@ -1,0 +1,102 @@
+@mixin color($a) {
+  @if type-of($a) == color {
+    color: $a;
+  }
+}
+@mixin number($a) {
+  @if type-of($a) == number {
+    z-index: $a;
+  }
+}
+@mixin string($a) {
+  @if type-of($a) == string and
+    $a == quote($a) {
+    content: $a;
+  }
+}
+// Checking, whether a string is a keyword is missing
+@mixin keyword($a) {
+  @if type-of($a) == string and
+    $a == unquote($a) {
+    content: $a;
+  }
+}
+// Checking, whether a string is a url is missing
+@mixin url($a) {
+  @if type-of($a) == string {
+    @if (str-slice($a, 1, str-length("url(\"")) == "url(\"" and
+      str-slice($a, -2) == "\")") or
+      (str-slice($a, 1, str-length("url('")) == "url('" and
+      str-slice($a, -2) == "')") {
+        background: $a;
+    }
+  }
+}
+@mixin pixel($a) {
+  @if unit($a) == px {
+    width: $a;
+  }
+}
+@mixin percentage($a) {
+  @if unit($a) == '%' {
+    width: $a;
+  }
+}
+@mixin em($a) {
+  @if unit($a) == em {
+    width: $a;
+  }
+}
+@mixin unit($a) {
+  @if unit($a) == rem {
+    width: $a;
+  }
+}
+// Checking, whether a variable is a ruleset is missing
+@mixin ruleset($a) {
+
+}
+
+.class-color {
+  @include color(#fff);
+}
+.class-number {
+  @include number(50);
+  @include number(50px);
+}
+.class-string {
+  @include string(lol);
+  @include string('lol');
+  @include string("lol");
+}
+.class-keyword {
+  @include keyword(lol);
+  @include keyword(when);
+}
+.class-url {
+  @include url("http://grafomat.sk/img/logo.png");
+  @include url(url("http://grafomat.sk/img/logo.png"));
+}
+
+.class-pixel {
+  @include pixel(10px);
+}
+.class-percentage {
+  @include percentage(100%);
+}
+.class-em {
+  @include em(1.8em);
+}
+.class-unit {
+  @include unit(1rem);
+}
+@mixin a_ruleset() {
+  border: none;
+}
+@mixin tmp_ruleset() {
+  color: black;
+}
+.class-ruleset {
+  @include tmp_ruleset;
+  @include a_ruleset;
+}

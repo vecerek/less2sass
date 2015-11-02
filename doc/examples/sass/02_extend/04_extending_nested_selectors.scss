@@ -1,0 +1,11 @@
+%tr_.bucket {
+  color: blue;
+}
+.bucket {
+  tr & {
+    @extend %tr_.bucket;
+  }
+}
+.some-class {
+  @extend %tr_.bucket;
+}

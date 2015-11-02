@@ -1,0 +1,28 @@
+@mode: huge;
+
+#namespace when (@mode=huge) {
+  .mixin() {
+    color: black;
+  }
+}
+
+#namespace {
+  .mixin() when (@mode=huge) {
+    color: red;
+  }
+}
+.a {
+  #namespace > .mixin();
+}
+
+//this should be never evaluated
+#sp_1 {
+  #sp_2 {
+    .mixin() when not(default()) {
+      background: white;
+    }
+  }
+}
+.b {
+  #sp_1 #sp_2 .mixin();
+}

@@ -1,0 +1,7 @@
+// library
+$base-color: green;
+$base-color: red;
+$dark-color: darken($base-color, 10%);
+
+// use of library
+@import "import/08_default_variables.scss";

@@ -1,0 +1,12 @@
+@mixin mixin($a) {
+  @if lightness($a) >= 50% {
+    background-color: black;
+  }
+  @if lightness($a) < 50% {
+    background-color: white;
+  }
+  color: $a;
+}
+
+.class1 { @include mixin(#ddd); }
+.class2 { @include mixin(#555); }

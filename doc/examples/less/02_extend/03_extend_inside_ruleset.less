@@ -1,0 +1,12 @@
+pre:hover,
+.some-class {
+  &:extend(div pre);
+}
+
+// same as
+// pre:hover:extend(div pre),
+// .some-class:extend(div pre) {}
+
+div pre {
+  color: black;
+}

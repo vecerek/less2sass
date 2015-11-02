@@ -1,0 +1,15 @@
+.mixin(@color) {
+  color: @color;
+}
+.mixin(@color; @padding: 2) {
+  color: @color;
+  padding: @padding;
+}
+.mixin(@color; @padding; @margin: 2) {
+  color: @color;
+  padding: @padding;
+  margin: @margin @margin @margin @margin;
+}
+.some .selector div {
+  .mixin(#008000);
+}

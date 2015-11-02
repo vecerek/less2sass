@@ -1,0 +1,25 @@
+.b, .a {
+  color: red;
+}
+
+.d, .c {
+  color: green;
+}
+
+.d.x, .x.c {
+  color: yellow;
+}
+
+.x.d, .x.c {
+  background-color: yellow;
+}
+
+.f, .e {
+  color: purple;
+}
+
+.g, .e {
+  background-color: white;
+}
+
+/*# sourceMappingURL=01_syntax.css.map */

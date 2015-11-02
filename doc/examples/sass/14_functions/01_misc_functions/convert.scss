@@ -1,0 +1,8 @@
+@import '../functions.scss';
+
+.convert {
+  duration: __l2s__convert(9s, "ms");
+  width: __l2s__convert(14cm, mm);
+  height: __l2s__convert(8, mm);
+  border: __l2s__convert(2px, "ms");
+}

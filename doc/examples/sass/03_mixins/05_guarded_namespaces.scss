@@ -1,0 +1,27 @@
+$mode: huge;
+
+@mixin id_namespace--class_mixin() {
+  @if $mode == huge {
+    color: black;
+  }
+}
+
+@mixin id_namespace--class_mixin() {
+  @if $mode == huge {
+    color: red;
+  }
+}
+
+.a {
+  @include id_namespace--class_mixin();
+}
+
+@mixin id_sp_1--id_sp_2--class_mixin() {
+  @if not mixin-exists(id_sp_1--id_sp_2--class_mixin) {
+    background: white;
+  }
+}
+
+.b {
+  @include id_sp_1--id_sp_2--class_mixin();
+}

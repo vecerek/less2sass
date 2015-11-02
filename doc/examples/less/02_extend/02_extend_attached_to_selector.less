@@ -1,0 +1,27 @@
+pre:hover:extend(div pre) {
+  text-align: justify;
+}
+// pre:hover:extend(div pre):extend(.bucket tr) {}
+pre:hover:extend(div pre, .bucket tr) {
+  text-transform: uppercase;
+}
+
+.big-division,
+.big-bag:extend(.bag),
+.big-bucket:extend(.bucket) {
+  // body
+  border: none;
+}
+
+div pre {
+  color: white;
+}
+.bucket tr {
+  background-color: black;
+}
+.bag {
+  color: green;
+}
+.bucket {
+  background-color: red;
+}

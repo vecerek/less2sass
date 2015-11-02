@@ -1,0 +1,239 @@
+//Font Properties
+@font-face {
+  font-family: myFirstFont;
+  src: url(sansation_light.woff);
+}
+
+//Animation Properties
+@keyframes mymove {
+  from {top: 0px;}
+  to {top: 200px;}
+}
+
+.rules {
+  /* Color Properties */
+  color: transparent;
+  opacity: 0.5;
+
+  // Background and Border Properties
+  background: #00ff00 url("smiley.gif") no-repeat fixed center;
+  background-attachment: scroll;
+  background-blend-mode: color-dodge;
+  background-color: #00ff01;
+  background-image: url("smiley2.gif");
+  background-position: center bottom;
+  background-repeat: repeat-x;
+  background-clip: border-box;
+  background-origin: content-box;
+  background-size: contain;
+  border: transparent;
+  border-bottom: dashed;
+  border-bottom-color: #00eeee;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 35%;
+  border-bottom-style: dotted;
+  border-bottom-width: inherit;
+  border-color: #00ff01;
+  border-image: fill;
+  border-image-outset: 10px;
+  border-image-repeat: repeat;
+  border-image-slice: fill;
+  border-image-source: none;
+  border-image-width: auto;
+  border-left: inherit;
+  border-left-color: #00eeee;
+  border-left-style: none;
+  border-left-width: 10px;
+  border-radius: 15px;
+  box-decoration-break: clone;
+  box-shadow: #333333;
+
+  //Basic Box Properties
+  bottom: 10px;
+  clear: both;
+  clip: rect(100,100,100,100);
+  display: block;
+  float: left;
+  height: 10px;
+  left: 10px;
+  margin: 10px 15px 20px 5px;
+  margin-bottom: 3in;
+  margin-left: 1in;
+  margin-right: 5cm;
+  margin-top: 18pt;
+  max-height: 20px;
+  max-width: 100px;
+  min-height: 10px;
+  min-width: 50px;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 10px 11px 12px 13px;
+  padding-bottom: 10px;
+  padding-left: 11px;
+  padding-right: 12px;
+  padding-top: 13px;
+  position: absolute;
+  right: 0;
+  visibility: hidden;
+  width: 55px;
+  vertical-align: baseline;
+  z-index: 999;
+
+  //Flexible Box Layout
+  align-content: flex-end;
+  align-items: baseline;
+  align-self: auto;
+  flex: 1;
+  flex-basis: auto;
+  flex-direction: column-reverse;
+  flex-flow: nowrap;
+  flex-grow: 0.5;
+  flex-shrink: 0.5;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-start;
+  order: 2;
+
+  //Text Properties
+  hanging-punctuation: allow-end;
+  hyphens: auto;
+  letter-spacing: inherit;
+  line-break: loose;
+  line-height: normal;
+  overflow-wrap: break-word;
+  tab-size: 4;
+  text-align: left;
+  text-align-last: end;
+  text-combine-upright: inherit;
+  text-indent: each-line;
+  text-justify: distribute;
+  text-transform: none;
+  white-space: pre-line;
+  word-break: break-all;
+  word-spacing: normal;
+  word-wrap: break-word;
+
+  //Text Decoration Properties
+  text-decoration: none;
+  text-decoration-color: #990000;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-shadow: 2px 2px 5px #ff0000;
+  text-underline-position: auto;
+
+  font: italic bold 12px/30px Georgia, serif;
+  font-family: "Source Code Pro", Monaco, monospace;
+  font-feature-settings: normal;
+  font-kerning: none;
+  font-language-override: normal;
+  font-size: large;
+  font-size-adjust: inherit;
+  font-stretch: extra-expanded;
+  font-style: italic;
+  font-synthesis: weight;
+  font-variant: all-petite-caps;
+  font-variant-alternates: annotation("lol");
+  font-variant-caps: all-small-caps;
+  font-variant-east-asian: jis78;
+  font-variant-ligatures: additional-ligatures;
+  font-variant-numeric: diagonal-fractions;
+  font-variant-position: inherit;
+  font-weight: 600;
+
+  //Writing Modes Properties
+  direction: ltr;
+  text-orientation: inherit;
+  text-combine-upright: inherit;
+  unicode-bidi: embed;
+  writing-mode: inherit;
+
+  //Table Properties
+  border-collapse: collapse;
+  border-spacing: inherit;
+  caption-side: bottom;
+  empty-cells: hide;
+  table-layout: fixed;
+
+  //Lists and Counters Properties
+  counter-increment: none;
+  counter-reset: inherit;
+  list-style: none;
+  list-style-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+  list-style-position: inside;
+  list-style-type: square;
+
+  animation: mymove 5s infinite;
+  animation-delay: 2s;
+  animation-direction: alternate;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 3;
+  animation-name: mymove;
+  animation-play-state: paused;
+  animation-timing-function: linear;
+
+  //Transform Properties
+  backface-visibility: hidden;
+  perspective: 500px;
+  perspective-origin: 10% 10%;
+  transform: rotate(7deg);
+  transform-origin: 20% 40%;
+  transform-style: preserve-3d;
+
+  //Transition Properties
+  transition: ease-in-out, width .35s ease-in-out;
+  transition-property: width, height;
+  transition-duration: 5s;
+  transition-timing-function: cubic-bezier(0.42,0,0.58,1);
+  transition-delay: 2s;
+
+  //Basic User Interface Properties
+  box-sizing: border-box;
+  content: " (" attr(href) ")";
+  cursor: crosshair;
+  nav-index: 4;
+  nav-right: #b1; nav-left: #b3;
+  nav-down: #b1; nav-up: #b3;
+  outline: #00FF00 dotted thick;
+  outline-color: #00ff00;
+  outline-offset: 15px;
+  outline-style: dotted;
+  outline-width: 5px;
+  resize: both;
+  text-overflow: ellipsis;
+
+  //Multi-column Layout Properties
+  column-count: 3;
+  column-fill: auto;
+  column-gap: 40px;
+  column-rule: 4px outset #ff00ff;
+  column-rule-color: #ff0000;
+  column-rule-style: dotted;
+  column-rule-width: 1px;
+  column-span: all;
+  column-width: 100px;
+  columns: 100px 3;
+
+  //Page Media
+  orphans: 1;
+  page-break-after: always;
+  page-break-before: avoid;
+  page-break-inside: auto;
+
+  //Generated Content for Paged Media
+  quotes: "«" "»";
+
+  //Filter Effects Properties
+  filter: drop-shadow(8px 8px 10px red);
+
+  //Image Values and Replaced Content
+  image-orientation: 95deg;
+  image-rendering: optimize-contrast;
+  image-resolution: from-image;
+  object-fit: inherit;
+  object-position: inherit;
+
+  //Masking Properties
+  mask: inherit;
+  mask-type: inherit;
+}

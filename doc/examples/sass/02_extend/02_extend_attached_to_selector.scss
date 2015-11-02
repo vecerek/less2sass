@@ -1,0 +1,41 @@
+pre:hover {
+  @extend %div_pre;
+  text-align: justify;
+}
+pre:hover {
+  @extend %div_pre;
+  @extend %_.bucket_tr;
+  text-transform: uppercase;
+}
+
+.big-division,
+.big-bag,
+.big-bucket {
+  border: none;
+}
+.big-bag {
+  @extend .bag;
+}
+.big-bucket {
+  @extend .bucket;
+}
+
+%div_pre {
+  color: white;
+}
+%_.bucket_tr {
+  background-color: black;
+}
+
+div pre {
+  @extend %div_pre;
+}
+.bucket tr {
+  @extend %_.bucket_tr;
+}
+.bag {
+  color: green;
+}
+.bucket {
+  background-color: red;
+}

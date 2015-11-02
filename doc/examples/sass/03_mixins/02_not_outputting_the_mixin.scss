@@ -1,0 +1,13 @@
+@mixin class_my-mixin {
+  color: black;
+}
+.my-mixin {
+  color: black;
+}
+@mixin class_my-other-mixin() {
+  background: white;
+}
+.class {
+  @include class_my-mixin;
+  @include class_my-other-mixin;
+}

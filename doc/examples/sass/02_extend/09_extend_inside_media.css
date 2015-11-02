@@ -1,0 +1,31 @@
+@media print {
+  .screenClass, .selector {
+    color: black;
+  }
+}
+.selector {
+  color: red;
+}
+
+@media screen {
+  .selector {
+    color: blue;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .selector-2 {
+    color: blue;
+  }
+}
+@media screen {
+  .selector-3, .topLevel {
+    color: blue;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .selector-3, .topLevel {
+    color: blue;
+  }
+}
+
+/*# sourceMappingURL=09_extend_inside_media.css.map */

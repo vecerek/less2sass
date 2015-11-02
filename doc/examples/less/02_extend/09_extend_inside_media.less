@@ -1,0 +1,36 @@
+@media print {
+  .screenClass:extend(.selector) {} // extend inside media
+  .selector { // this will be matched - it is in the same media
+    color: black;
+  }
+}
+.selector { // ruleset on top of style sheet - extend ignores it
+  color: red;
+}
+@media screen {
+  .selector {  // ruleset inside another media - extend ignores it
+    color: blue;
+  }
+}
+
+@media screen {
+  .screenClass:extend(.selector-2) {} // extend inside media
+  @media (min-width: 1023px) {
+    .selector-2 {  // ruleset inside nested media - extend ignores it
+      color: blue;
+    }
+  }
+}
+
+@media screen {
+  .selector-3 {  /* ruleset inside nested media - top level extend works */
+    color: blue;
+  }
+  @media (min-width: 1023px) {
+    .selector-3 {  /* ruleset inside nested media - top level extend works */
+      color: blue;
+    }
+  }
+}
+
+.topLevel:extend(.selector-3) {} /* top level extend matches everything */

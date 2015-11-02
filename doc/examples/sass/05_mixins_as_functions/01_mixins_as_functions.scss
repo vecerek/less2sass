@@ -1,0 +1,46 @@
+@mixin mixin() {
+  color: black;
+}
+
+.caller {
+  $width: 100%;
+  $height: 200px;
+
+  @include mixin();
+  width: $width;
+  height: $height;
+}
+
+/********************************************************************/
+
+@function average($x, $y) {
+  @return (($x + $y) / 2);
+}
+
+div {
+  $average: average(16px, 50px);
+  padding: $average;
+}
+
+/********************************************************************/
+
+$size: globally-defined-value;
+
+.class {
+  $size: in-mixin;
+  $definedOnlyInMixin: in-mixin;
+  margin: $size $definedOnlyInMixin;
+}
+
+/********************************************************************/
+
+@mixin unlock($value) {
+}
+
+#namespace {
+  @mixin doSomething($value) {
+    declaration: $value;
+  }
+  @include unlock(5);
+  @include doSomething(5);
+}

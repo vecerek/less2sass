@@ -1,0 +1,11 @@
+.a.b.test, .a.b.replacement,
+.test.c,
+.c.replacement {
+  color: orange;
+}
+
+.test:hover, .replacement:hover {
+  color: green;
+}
+
+/*# sourceMappingURL=07_extend_all.css.map */

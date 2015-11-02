@@ -1,0 +1,10 @@
+.my-mixin {
+  color: black;
+}
+
+.class {
+  color: black;
+  background: white;
+}
+
+/*# sourceMappingURL=02_not_outputting_the_mixin.css.map */

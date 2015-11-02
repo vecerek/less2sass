@@ -1,0 +1,16 @@
+.mixin(...) {}          // matches 0-N arguments
+.mixin2() {}            // matches exactly 0 arguments
+.mixin3(@a: 1) {}       // matches 0-1 arguments
+.mixin4(@a: 1; ...) {}  // matches 0-N arguments
+.mixin5(@a; ...) {}     // matches 1-N arguments
+
+.mixin6(@a; @rest...) {
+  // @rest is bound to arguments after @a
+  // @arguments is bound to all arguments
+  color: @a;
+  border: @rest;
+}
+
+.a {
+  .mixin6(#333, 2px solid black);
+}

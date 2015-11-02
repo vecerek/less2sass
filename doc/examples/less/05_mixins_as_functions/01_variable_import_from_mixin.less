@@ -1,0 +1,49 @@
+.mixin() {
+  @width:  100%;
+  @height: 200px;
+  color: black;
+}
+
+.caller {
+  .mixin();
+  width:  @width;
+  height: @height;
+}
+
+/********************************************************************/
+
+.average(@x, @y) {
+  @average: ((@x + @y) / 2);
+}
+
+div {
+  .average(16px, 50px); // "call" the mixin
+  padding: @average;  // use its "return" value
+}
+
+/********************************************************************/
+
+.mixin2() {
+  @size: in-mixin;
+  @definedOnlyInMixin: in-mixin;
+}
+
+.class {
+  margin: @size @definedOnlyInMixin;
+  .mixin2();
+}
+
+@size: globaly-defined-value; // callers parent scope - no protection
+
+/********************************************************************/
+
+.unlock(@value) { // outer mixin
+  .doSomething() { // nested mixin
+    declaration: @value;
+  }
+}
+
+#namespace {
+  .unlock(5); // unlock doSomething mixin
+  .doSomething(); //nested mixin was copied here and is usable
+}

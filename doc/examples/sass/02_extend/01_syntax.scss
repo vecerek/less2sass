@@ -1,0 +1,43 @@
+.a {
+  @extend .b;
+}
+.a {
+  @extend .b;
+}
+
+.c {
+  @extend .d;
+}
+.c {
+  @extend .d;
+}
+
+.e {
+  @extend .f;
+}
+.e {
+  @extend .g;
+}
+.e {
+  @extend .f;
+  @extend .g;
+}
+
+.b {
+  color: red;
+}
+.d {
+  color: green;
+}
+.d.x {
+  color: yellow;
+}
+.x.d {
+  background-color: yellow;
+}
+.f {
+  color: purple;
+}
+.g {
+  background-color: white;
+}

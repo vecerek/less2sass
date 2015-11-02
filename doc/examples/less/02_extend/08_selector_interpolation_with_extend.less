@@ -1,0 +1,12 @@
+@variable: .bucket;
+@{variable} { // interpolated selector
+  color: blue;
+}
+.some-class:extend(.bucket) {} // does nothing, no match is found
+.some-class:extend(@{variable}) {} // interpolated selector matches nothing
+
+.bucket-2 {
+  color: blue;
+}
+@{variable2}:extend(.bucket-2) {}
+@variable2: .selector;

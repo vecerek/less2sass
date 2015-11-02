@@ -1,0 +1,46 @@
+.class-color {
+  color: #fff;
+}
+
+.class-number {
+  z-index: 50;
+  z-index: 50px;
+}
+
+.class-string {
+  content: lol;
+  content: "lol";
+  content: "lol";
+}
+
+.class-keyword {
+  content: lol;
+  content: when;
+}
+
+.class-url {
+  background: url("http://grafomat.sk/img/logo.png");
+}
+
+.class-pixel {
+  width: 10px;
+}
+
+.class-percentage {
+  width: 100%;
+}
+
+.class-em {
+  width: 1.8em;
+}
+
+.class-unit {
+  width: 1rem;
+}
+
+.class-ruleset {
+  color: black;
+  border: none;
+}
+
+/*# sourceMappingURL=04_type_checking_functions.css.map */

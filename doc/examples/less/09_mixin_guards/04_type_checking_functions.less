@@ -1,0 +1,88 @@
+/*
+ * Basic type checking functions:
+ * - iscolor
+ * - isnumber
+ * - isstring
+ * - iskeyword
+ * - isurl
+ * - isruleset
+ *
+ * Specific unit checking functions:
+ * - ispixel
+ * - ispercentage
+ * - isem
+ * - isunit
+ */
+
+.color (@a) when (iscolor(@a)) {
+  color: @a;
+}
+.number (@a) when (isnumber(@a)) {
+  z-index: @a;
+}
+.string (@a) when (isstring(@a)) {
+  content: @a;
+}
+.keyword (@a) when (iskeyword(@a)) {
+  content: @a;
+}
+.url (@a) when (isurl(@a)) {
+  background: @a;
+}
+
+.pixel (@a) when (ispixel(@a)) {
+  width: @a;
+}
+.percentage (@a) when (ispercentage(@a)) {
+  width: @a;
+}
+.em (@a) when (isem(@a)) {
+  width: @a;
+}
+.unit (@a) when (isunit(@a, rem)) {
+  width: @a;
+}
+.ruleset (@a) when (isruleset(@a)) {
+  @a();
+}
+
+.class-color {
+  .color(#fff);
+}
+.class-number {
+  .number(50);
+  .number(50px);
+}
+.class-string {
+  .string(lol);
+  .string('lol');
+  .string("lol");
+}
+.class-keyword {
+  .keyword(lol);
+  .keyword(when);
+}
+.class-url {
+  .url("http://grafomat.sk/img/logo.png");
+  .url(url("http://grafomat.sk/img/logo.png"));
+}
+
+.class-pixel {
+  .pixel(10px);
+}
+.class-percentage {
+  .percentage(100%);
+}
+.class-em {
+  .em(1.8em);
+}
+.class-unit {
+  .unit(1rem);
+}
+.class-ruleset {
+  @a: {
+    border: none;
+  };
+  .ruleset({ color: black; });
+  .ruleset(@a);
+}

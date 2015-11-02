@@ -1,0 +1,16 @@
+.a.class,
+.class.a,
+.class > .a {
+  color: blue;
+}
+.test {}
+
+*.class {
+  color: blue;
+}
+.noStar {}
+
+link:hover:visited {
+  color: blue;
+}
+.selector {}

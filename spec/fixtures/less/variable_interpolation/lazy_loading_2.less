@@ -1,0 +1,11 @@
+@b: 10%;
+
+#id {
+  @var: @a + @b;
+  @a: 100%;
+
+  .lazy-eval-scope {
+    width: @var;
+    @a: 9%;
+  }
+}

@@ -1,0 +1,34 @@
+@media print {
+  .selector,
+  .screenClass {
+    color: black;
+  }
+}
+.selector {
+  color: red;
+}
+@media screen {
+  .selector {
+    color: blue;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .selector-2 {
+    color: blue;
+  }
+}
+@media screen {
+  .selector-3,
+  .topLevel {
+    /* ruleset inside nested media - top level extend works */
+    color: blue;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .selector-3,
+  .topLevel {
+    /* ruleset inside nested media - top level extend works */
+    color: blue;
+  }
+}
+/* top level extend matches everything */

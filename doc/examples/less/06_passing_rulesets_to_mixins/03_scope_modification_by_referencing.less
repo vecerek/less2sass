@@ -1,0 +1,13 @@
+@detached-1: { scope-detached: @one @two; };
+.one {
+  @one: visible;
+  .two {
+    @detached-2: @detached-1; // copying/renaming ruleset
+    @two: visible; // ruleset can not see this variable
+  }
+}
+
+.use-place {
+  .one > .two();
+  @detached-2();
+}

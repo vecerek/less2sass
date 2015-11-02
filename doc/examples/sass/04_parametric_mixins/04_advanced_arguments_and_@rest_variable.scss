@@ -1,0 +1,14 @@
+@mixin mixin($args...) {}
+@mixin mixin2() {}
+@mixin mixin3($a: 1) {}
+@mixin mixin4($a: 1, $rest...) {}
+@mixin mixin5($a, $rest...) {}
+
+@mixin mixin6($a, $rest...) {
+  color: $a;
+  border: $rest;
+}
+
+.a {
+  @include mixin6(#333, 2px solid black);
+}

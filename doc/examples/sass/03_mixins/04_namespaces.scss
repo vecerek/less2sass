@@ -1,0 +1,20 @@
+@mixin id_outer--class_inner {
+  color: red;
+}
+#outer {
+  .inner {
+    color: red;
+  }
+}
+
+.c {
+  @include id_outer--class_inner;
+}
+
+@mixin id_my-library--class_my-mixin() {
+  color: black;
+}
+.class {
+  // all do the same thing
+  @include id_my-library--class_my-mixin();
+}

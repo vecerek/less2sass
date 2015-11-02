@@ -1,0 +1,11 @@
+pre:hover, .some-class {
+  @extend %div_pre;
+}
+
+div pre {
+  @extend %div_pre;
+}
+
+%div_pre {
+  color: black;
+}

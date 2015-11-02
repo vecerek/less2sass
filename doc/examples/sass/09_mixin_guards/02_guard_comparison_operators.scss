@@ -1,0 +1,35 @@
+@mixin truth($a) {
+  @if $a == true {
+    color: black;
+  }
+  @if $a == true {
+    color: white;
+  }
+}
+
+.class {
+  @include truth(40);
+}
+
+/************************************************/
+
+$media: mobile;
+
+@mixin mixin($a) {
+  @if $media == mobile {
+    color: lighten($a, 10%);
+  }
+  @if $media == desktop {
+    color: darken($a, 10%);
+  }
+}
+
+@mixin max($a, $b) {
+  @if $a > $b { width: $a; }
+  @if $a < $b { width: $b; }
+}
+
+#id {
+  @include mixin(#555);
+  @include max(110, 120);
+}

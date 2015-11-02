@@ -1,0 +1,42 @@
+@media print {
+  %_.selector {
+    color: black;
+  }
+  .screenClass {
+    @extend %_.selector;
+  }
+  .selector {
+    @extend %_.selector;
+  }
+}
+.selector {
+  color: red;
+}
+@media screen {
+  .selector {
+    color: blue;
+  }
+}
+
+@media screen {
+  @media (min-width: 1023px) {
+    .selector-2 {
+    color: blue;
+    }
+  }
+}
+
+@media screen {
+  .selector-3 {
+    color: blue;
+  }
+  @media (min-width: 1023px) {
+    .selector-3 {
+    color: blue;
+    }
+  }
+}
+
+.topLevel {
+  @extend .selector-3;
+}

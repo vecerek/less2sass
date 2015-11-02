@@ -1,0 +1,12 @@
+.mixin(@color; @value: uppercase) {
+  color: @color;
+  text-transform: @value;
+}
+.mixin(@color; @value: 2; @margin: 2) {
+  color: @color;
+  padding: @value;
+  margin: @margin @margin @margin @margin;
+}
+.some .selector div {
+  .mixin(#008000);
+}

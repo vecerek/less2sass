@@ -1,0 +1,8 @@
+@mixin class_my-hover-mixin() {
+  &:hover {
+    border: 1px solid red;
+  }
+}
+button {
+  @include class_my-hover-mixin();
+}

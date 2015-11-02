@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# A command line Less to Sass converter
+
+begin
+  # require works with RubyMine, not with terminal
+  require_relative '../lib/less2sass'
+rescue LoadError
+  require 'less2sass'
+end
+
+opts = Less2Sass::Exec::Conversion.new(ARGV, :sass2less)
+opts.parse!

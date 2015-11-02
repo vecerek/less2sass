@@ -1,0 +1,15 @@
+#space {
+  .importer-1() {
+    @detached: { scope-detached: @variable; }; // define detached ruleset
+  }
+}
+
+.importer-2() {
+  @variable: value; // unlocked detached ruleset CAN see this variable
+  #space > .importer-1(); // unlock/import detached ruleset
+}
+
+.use-place {
+  .importer-2(); // unlock/import detached ruleset second time
+  @detached();
+}

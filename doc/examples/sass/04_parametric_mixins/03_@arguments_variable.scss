@@ -1,0 +1,9 @@
+@mixin class_box-shadow($x: 0, $y: 0, $blur: 1px, $color: #000) {
+  $arguments: ($x, $y, $blur, $color);
+  -webkit-box-shadow: $arguments;
+     -moz-box-shadow: $arguments;
+          box-shadow: $arguments;
+}
+.big-block {
+  @include class_box-shadow(2px, 5px);
+}

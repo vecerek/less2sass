@@ -1,0 +1,19 @@
+// Logical AND operator
+.mixin (@a) when (isnumber(@a)) and (@a > 0) {
+  width: @a;
+}
+
+// Logical OR operator
+.mixin (@a) when (@a > 10), (@a < -10) {
+  z-index: @a;
+}
+
+// Logical NOT operator
+.mixin (@b) when not (@b > 0) {
+  right: @b;
+}
+
+.class {
+  .mixin(25);
+  .mixin(-5);
+}

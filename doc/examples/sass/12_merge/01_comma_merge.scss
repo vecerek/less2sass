@@ -1,0 +1,32 @@
+@mixin __l2s___merger($props, $vals) {
+  @each $prop in $props {
+    $attr: map-get($prop, name);
+    $val: map-get($vals, $attr);
+
+    @if map-get($prop, position) == before {
+      #{$attr}: join(map-get($prop, value), $val, map-get($prop, separator));
+    } @else {
+      #{$attr}: join($val, map-get($prop, value), map-get($prop, separator));
+    }
+  }
+}
+
+@mixin mixin($__l2s__merge) {
+  $__l2s__values: (
+    box-shadow: (inset 0 0 10px #555,)
+  );
+  @include __l2s___merger($__l2s__merge, $__l2s__values);
+  color: black;
+}
+
+.myclass {
+  $__l2s__merge: (
+    (
+      name: box-shadow,
+      value: (0 0 20px black,),
+      position: after,
+      separator: comma
+    ),
+  );
+  @include mixin($__l2s__merge);
+}

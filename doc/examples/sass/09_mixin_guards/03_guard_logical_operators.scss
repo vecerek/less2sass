@@ -1,0 +1,16 @@
+@mixin mixin($a) {
+  @if type-of($a) == number and $a > 0 {
+    width: $a;
+  }
+  @if $a > 10 or $a < -10 {
+    z-index: $a;
+  }
+  @if not ($a > 0) {
+    right: $a;
+  }
+}
+
+.class {
+  @include mixin(25);
+  @include mixin(-5);
+}

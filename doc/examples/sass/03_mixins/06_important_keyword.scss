@@ -1,0 +1,15 @@
+@mixin class_foo ($bg: #f5f5f5, $color: #900, $important: false) {
+  @if $important {
+    $important: !important;
+  } @else {
+    $important: null;
+  }
+  background: $bg #{$important};
+  color: $color #{$important};
+}
+.unimportant {
+  @include class_foo();
+}
+.important {
+  @include class_foo($important: true);
+}

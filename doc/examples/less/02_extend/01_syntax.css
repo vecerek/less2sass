@@ -1,0 +1,28 @@
+.b,
+.a,
+.a {
+  color: red;
+}
+.d,
+.c,
+.c {
+  color: green;
+}
+.d.x,
+.c.x {
+  color: yellow;
+}
+.x.d,
+.x.c {
+  background-color: yellow;
+}
+.f,
+.e,
+.e {
+  color: purple;
+}
+.g,
+.e,
+.e {
+  background-color: white;
+}

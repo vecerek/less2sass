@@ -1,0 +1,14 @@
+@mixin mixin($a) {
+  @if $a > 0 {
+    width: $a;
+  } @else {
+    width: 0;
+  }
+}
+
+.class {
+  @include mixin(50%);
+}
+.default {
+  @include mixin(-50px);
+}

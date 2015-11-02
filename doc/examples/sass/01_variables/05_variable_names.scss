@@ -1,0 +1,5 @@
+$fnord:  "I am fnord.";
+$var:    "fnord";
+.selector {
+  content: $fnord;
+}

@@ -1,0 +1,29 @@
+.truth (@a) when (@a) {
+  color: black;
+}
+.truth (@a) when (@a = true) {
+  color: white;
+}
+
+.class {
+  .truth(40); //Will not match any of the above definitions.
+}
+
+/******************************************************************/
+
+@media: mobile;
+
+.mixin (@a) when (@media = mobile) {
+  color: lighten(@a, 10%);
+}
+.mixin (@a) when (@media = desktop) {
+  color: darken(@a, 10%);
+}
+
+.max (@a; @b) when (@a > @b) { width: @a }
+.max (@a; @b) when (@a < @b) { width: @b }
+
+#id {
+  .mixin(#555);
+  .max(110; 120);
+}

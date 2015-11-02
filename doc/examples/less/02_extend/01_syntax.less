@@ -1,0 +1,38 @@
+.a:extend(.b) {}
+
+// the above block does the same thing as the below block
+.a {
+    &:extend(.b);
+}
+
+.c:extend(.d all) {
+    // extends all instances of ".d" e.g. ".x.d" or ".d.x"
+}
+.c:extend(.d) {
+    // extends only instances where the selector will be output as just ".d"
+}
+
+.e:extend(.f) {}
+.e:extend(.g) {}
+
+// the above and the below do the same thing
+.e:extend(.f, .g) {}
+
+.b {
+    color: red;
+}
+.d {
+    color: green;
+}
+.d.x {
+    color: yellow;
+}
+.x.d {
+    background-color: yellow;
+}
+.f {
+    color: purple;
+}
+.g {
+    background-color: white;
+}

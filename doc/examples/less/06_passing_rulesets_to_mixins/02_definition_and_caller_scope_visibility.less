@@ -1,0 +1,29 @@
+@detached-ruleset: {
+  caller-variable: @caller-variable; // variable is undefined here
+  .caller-mixin(); // mixin is undefined here
+};
+
+selector {
+  // use detached ruleset
+  @detached-ruleset();
+
+  // define variable and mixin needed inside the detached ruleset
+  @caller-variable: value;
+  .caller-mixin() {
+    variable: declaration;
+  }
+}
+
+/******************************************************************/
+
+@variable: global;
+@detached-ruleset-2: {
+  // will use global variable, because it is accessible
+  // from detached-ruleset definition
+  variable: @variable;
+};
+
+selector {
+  @detached-ruleset-2();
+  @variable: value; // variable defined in caller - will be ignored
+}

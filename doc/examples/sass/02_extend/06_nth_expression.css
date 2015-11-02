@@ -1,0 +1,17 @@
+:nth-child(1n+3) {
+  color: blue;
+}
+
+[title=identifier], .noQuote {
+  color: blue;
+}
+
+[title='identifier'], .singleQuote {
+  color: blue;
+}
+
+[title="identifier"], .doubleQuote {
+  color: blue;
+}
+
+/*# sourceMappingURL=06_nth_expression.css.map */

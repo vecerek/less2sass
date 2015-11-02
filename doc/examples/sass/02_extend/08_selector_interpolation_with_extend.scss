@@ -1,0 +1,13 @@
+$variable: bucket;
+.#{$variable} {
+  color: blue;
+}
+.some-class {}
+
+.bucket-2 {
+  color: blue;
+}
+$variable2 : selector;
+.#{$variable2} {
+  @extend .bucket-2;
+}

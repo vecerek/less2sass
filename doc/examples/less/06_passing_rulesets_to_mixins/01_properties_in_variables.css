@@ -1,0 +1,11 @@
+header {
+  background-color: blue;
+}
+@media screen and (min-width: 1200) {
+  header {
+    background-color: red;
+  }
+}
+html.lt-ie9 header {
+  background-color: red;
+}

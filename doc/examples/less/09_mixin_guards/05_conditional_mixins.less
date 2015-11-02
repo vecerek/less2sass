@@ -1,0 +1,13 @@
+.mixin (@a) when (@a > 0) {
+  width: @a;
+}
+.mixin (@a) when (default()) {
+  width: 0;
+} // matches only if first mixin does not, i.e. when @a <= 0
+
+.class {
+  .mixin(50%);
+}
+.default {
+  .mixin(-50px);
+}

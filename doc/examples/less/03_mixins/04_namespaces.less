@@ -1,0 +1,24 @@
+#outer {
+  .inner {
+    color: red;
+  }
+}
+
+.c {
+  #outer > .inner;
+}
+
+#my-library {
+  .my-mixin() {
+    color: black;
+  }
+}
+.class {
+  // all do the same thing
+  #my-library > .my-mixin;
+  #my-library > .my-mixin();
+  #my-library .my-mixin;
+  #my-library .my-mixin();
+  #my-library.my-mixin;
+  #my-library.my-mixin();
+}

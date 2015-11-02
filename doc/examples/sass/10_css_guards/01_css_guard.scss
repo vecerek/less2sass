@@ -1,0 +1,7 @@
+$my-option: true;
+
+@if $my-option == true {
+  button {
+    color: white;
+  }
+}

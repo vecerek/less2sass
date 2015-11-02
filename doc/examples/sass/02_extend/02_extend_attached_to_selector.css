@@ -1,0 +1,31 @@
+pre:hover {
+  text-align: justify;
+}
+
+pre:hover {
+  text-transform: uppercase;
+}
+
+.big-division,
+.big-bag,
+.big-bucket {
+  border: none;
+}
+
+pre:hover, div pre {
+  color: white;
+}
+
+pre:hover, .bucket tr, .big-bucket tr {
+  background-color: black;
+}
+
+.bag, .big-bag {
+  color: green;
+}
+
+.bucket, .big-bucket {
+  background-color: red;
+}
+
+/*# sourceMappingURL=02_extend_attached_to_selector.css.map */

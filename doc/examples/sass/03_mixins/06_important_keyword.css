@@ -1,0 +1,11 @@
+.unimportant {
+  background: #f5f5f5 ;
+  color: #900 ;
+}
+
+.important {
+  background: #f5f5f5 !important;
+  color: #900 !important;
+}
+
+/*# sourceMappingURL=06_important_keyword.css.map */

@@ -1,0 +1,9 @@
+.class {
+  .brass {
+    $var: 3;
+    three: $var;
+  }
+  $var: 1;
+  one: $var;
+}
+$var: 0;

@@ -1,0 +1,15 @@
+.link {
+  $__l2s__parent: &;
+  & + & {
+    color: red;
+  }
+  & & {
+    color: green;
+  }
+  &#{$__l2s__parent} {
+    color: blue;
+  }
+  &, &ish {
+    color: cyan;
+  }
+}

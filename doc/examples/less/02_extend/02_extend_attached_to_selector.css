@@ -1,0 +1,28 @@
+pre:hover {
+  text-align: justify;
+}
+pre:hover {
+  text-transform: uppercase;
+}
+.big-division,
+.big-bag,
+.big-bucket {
+  border: none;
+}
+div pre,
+pre:hover,
+pre:hover {
+  color: white;
+}
+.bucket tr,
+pre:hover {
+  background-color: black;
+}
+.bag,
+.big-bag {
+  color: green;
+}
+.bucket,
+.big-bucket {
+  background-color: red;
+}

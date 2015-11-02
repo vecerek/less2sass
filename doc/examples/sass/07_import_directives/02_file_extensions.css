@@ -1,0 +1,14 @@
+@import url(import/foo.css);
+.foo {
+  color: black;
+}
+
+.foo {
+  color: black;
+}
+
+.foo-php {
+  color: white;
+}
+
+/*# sourceMappingURL=02_file_extensions.css.map */

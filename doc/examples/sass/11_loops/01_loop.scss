@@ -1,0 +1,10 @@
+@mixin generate-columns($n, $i: 1) {
+  @if $i <= $n {
+    .column-#{$i} {
+      width: (100% * $i / $n);
+    }
+    @include generate-columns($n, ($i + 1));
+  }
+}
+
+@include generate-columns(4);

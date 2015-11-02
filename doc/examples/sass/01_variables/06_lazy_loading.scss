@@ -1,0 +1,8 @@
+$a: 9%;
+$var: $a;
+
+.lazy-eval-scope {
+  width: $var;
+}
+
+$a: 100%;

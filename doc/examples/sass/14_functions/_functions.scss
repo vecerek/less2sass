@@ -1,0 +1,56 @@
+$__l2s__length: (
+  m: 1,
+  cm: 100,
+  mm: 1000,
+  in: 39.37007874016, // 1cm = 2.54in
+  pt: 2834.6456692915199, // 1in = 72pt
+  pc: 236.220472441 // 1pt = 12pc
+);
+
+$__l2s__time: (
+  s: 1,
+  ms: 1000
+);
+
+//source: https://www.translatorscafe.com/cafe/EN/units-converter/angle/2-3/radian-grad/
+$__l2s__angle: (
+  rad: 1,
+  deg: 57.29577951308,
+  grad: 63.66197723676,
+  turn: 0.1591549430919
+);
+
+@function __l2s__strip_unit($value) {
+  @if type-of($value) != "number" {
+    @error "Value is NaN (#{type-of($value)})";
+  }
+  @return $value / ($value*0 + 1);
+}
+
+@function __l2s__convert($value, $unit) {
+  @if type-of($value) == "number" {
+    @if not unitless($value) {
+      $_unit: unit($value);
+      $_val: __l2s__strip_unit($value);
+      $type: ();
+      @if map-has-key($__l2s__length, $_unit) {
+        $type: $__l2s__length;
+      } @else if map-has-key($__l2s__time, $_unit) {
+        $type: $__l2s__time;
+      } @else if map-has-key($__l2s__angle, $_unit) {
+        $type: $__l2s__angle;
+      } @else {
+        @return $value;
+      }
+
+      @if map-has-key($type, $unit) {
+        @return unquote(($_val/map-get($type, $_unit)) * map-get($type, $unit) + $unit);
+      }
+    }
+  } @else {
+    @error "Value is NaN (#{type-of($value)})";
+  }
+
+  @return $value;
+}
+

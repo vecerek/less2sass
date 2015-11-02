@@ -1,0 +1,15 @@
+@mixin class_mixin($color) {
+  color: $color;
+}
+@mixin class_mixin($color, $padding: 2) {
+  color: $color;
+  padding: $padding;
+}
+@mixin class_mixin($color, $padding, $margin: 2) {
+  color: $color;
+  padding: $padding;
+  margin: $margin;
+}
+.some .selector div {
+  @include class_mixin(#008000);
+}
