@@ -1,4 +1,11 @@
 language: ruby
 rvm:
   - 2.3.0
-before_install: gem install bundler -v 1.11.2
+node_js:
+  - 5.10
+before_install:
+  - gem install bundler -v 1.11.2
+  - npm install less@2.7.1
+  - export NODE_PATH=./node_modules:$NODE_PATH
+script:
+  - bundle exec rake spec
