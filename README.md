@@ -1,5 +1,8 @@
 # less2sass
 
+[![Gem Version](https://badge.fury.io/rb/less_to_sass.svg)](http://badge.fury.io/rb/less_to_sass)
+[![Build Status](https://travis-ci.org/vecerek/less2sass.svg)](https://travis-ci.org/vecerek/less2sass)
+
 LESS and SASS are two dynamic style sheet languages with some minor differences in syntax and huge differences in their semantics. The goal of this project is to create a converter application between these formats.
 
 There are some converters available on the Internet, but all of them are working on the search and replace principle and can not produce 100% correct conversion. Less2sass is an AST-based converter, which heavily uses the Less.js and Sass engines in order to correctly parse Less code and generate Sass or SCSS stylesheets, respectively.
