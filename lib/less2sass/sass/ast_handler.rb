@@ -33,8 +33,8 @@ module Less2Sass
       # @param [String, IO] destination the base directory
       #   or an IO Stream where the converted projects
       #   should be outputted.
-      def code_gen(destination = nil)
-        code = @tree.to_scss
+      def code_gen(destination = nil, syntax)
+        code = syntax == :scss ? @tree.to_scss : @tree.to_sass
         return code unless destination
         if destination.is_a?(String)
           open_file(destination, 'w') { |file| file.write(code) }

@@ -9,7 +9,7 @@ module Less2Sass
 
       def initialize(args, conversion)
         super(args)
-        @options[:target_syntax] = :scss
+        @options = {}
         @conversion = conversion
       end
 
@@ -43,7 +43,7 @@ END
         end
 
         opts.on('-v', '--version', 'Print the Sass version.') do
-          puts("Less2Sass #{Less2Sass.version[:string]}")
+          puts("Less2Sass v#{Less2Sass::VERSION}")
           exit
         end
       end
@@ -52,8 +52,8 @@ END
         opts.separator ''
         opts.separator 'Input and Output:'
 
-        if conversion == :less2sass
-          opts.on(:OPTIONAL, '--target-syntax SYNTAX',
+        if @conversion == :less2sass
+          opts.on(:OPTIONAL, '--target-syntax=SYNTAX',
                   'Which Sass syntax should the Less project be converted to.',
                   '  - scss (default):  Use the CSS-superset SCSS syntax.',
                   '  - sass:            Use the indented Sass syntax.'
@@ -62,9 +62,11 @@ END
               raise ArgumentUnspecifiedError, '--target-syntax'
             elsif syntax && !%w(scss sass).include?(syntax)
               raise InvalidArgumentError, '--target-syntax', syntax
+            else
+              @options[:target_syntax] = syntax.to_sym
             end
-            @options[:target_syntax] = (syntax || :scss).to_sym
           end
+          @options[:target_syntax] ||= :scss
         end
 
         opts.on('-s', '--stdin', :NONE,
@@ -91,7 +93,7 @@ END
                                             .transform_tree
                                             .to_sass
 
-          sass.code_gen(@options[:output])
+          sass.code_gen(@options[:output], @options[:target_syntax])
         elsif conversion == :sass2less
           # TODO: Implement Sass to Less conversion
           # Raise some error but this line should never be reached
