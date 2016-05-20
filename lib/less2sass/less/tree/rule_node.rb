@@ -31,7 +31,7 @@ module Less2Sass
         # Returns whether the node is a variable definition.
         #
         # @return [Boolean]
-        def is_variable_definition?
+        def variable_definition?
           @variable
         end
 
@@ -66,18 +66,31 @@ module Less2Sass
         def to_sass
           node ||=
             begin
-              if is_variable_definition?
+              if variable_definition?
                 ::Sass::Tree::VariableNode.new(
                   sass_name, @value.to_sass, @guarded, @global
                 )
               else
-                # TODO: Don't forget about the `#{}`
                 ::Sass::Tree::PropNode.new(
                   process_property_name, @value.to_sass, :new
                 )
               end
             end
           node(node, line(:new))
+        end
+
+        def evaluable?
+          true
+        end
+
+        # Evaluates the variable definition according to the environment
+        # it is a part of.
+        #
+        # @raise EvaluationError if not a variable definition
+        # @return [Node] the value of the defined variable
+        def eval
+          raise EvaluationError, PropNode unless variable_definition?
+          @value.eval
         end
 
         private

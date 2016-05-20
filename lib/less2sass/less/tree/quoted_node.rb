@@ -26,6 +26,12 @@ module Less2Sass
           end
         end
 
+        # @see RuleNode#eval
+        # @return [String]
+        def eval
+          @value
+        end
+
         # Returns the string's raw value without passing the type of quote.
         #
         # Sass has its own standards regarding the quotes, it should be in
