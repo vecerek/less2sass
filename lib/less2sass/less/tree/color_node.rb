@@ -21,6 +21,8 @@ module Less2Sass
           color = node(::Sass::Script::Value::Color.new(@rgb, @value), nil)
           node(::Sass::Script::Tree::Literal.new(color), line)
         end
+
+        # TODO: Check if Less is capable of operating with colors using the standard operators besides its color functions
       end
     end
   end

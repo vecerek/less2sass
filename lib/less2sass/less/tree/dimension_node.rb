@@ -17,6 +17,13 @@ module Less2Sass
           node(::Sass::Script::Tree::Literal.new(dimension), line)
         end
 
+        # Returns the unit of the dimension node.
+        #
+        # @return [String]
+        def dimension
+          @unit.to_s
+        end
+
         def to_s
           @value.to_s + @unit.to_s
         end

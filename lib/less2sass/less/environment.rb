@@ -47,6 +47,8 @@ module Less2Sass
         @rules = []
         @rest = []
         @mixin_call_rules = []
+
+        @lookups = {}
       end
 
       # Places an array of nodes into this environment.
@@ -127,6 +129,24 @@ module Less2Sass
         @parent ? @parent.find_variable_definition_if_dynamic(name) : nil
       end
 
+      # TODO: create method that performs variable evaluation
+      #       finds the variable's definition and evaluates it
+      #       it stores then the value for possible future lookups.
+
+      # Looks up the variable's value in this environment based
+      # on its environment.
+      #
+      # It may also store the looked up variable's value
+      # for possible future lookups.
+      #
+      # @param [String] variable name of the variable to look up
+      # @return [Node, String] the variable's value
+      def lookup(variable)
+        var_def = @variables_to_reorder[variable] || @static_var_def_rules[variable]
+        var_def ||= @parent.lookup(variable)
+        var_def.eval
+      end
+
       private
 
       # Puts the nodes of this environment's scope into
@@ -145,7 +165,7 @@ module Less2Sass
         if obj.is_a?(Less2Sass::Less::Tree::RulesetNode)
           @rules << obj
         elsif obj.is_a?(Less2Sass::Less::Tree::RuleNode)
-          if obj.is_variable_definition?
+          if obj.variable_definition?
             referenced_vars = obj.get_referenced_variable_names
             if referenced_vars.empty?
               @static_var_def_rules[obj.name] = obj

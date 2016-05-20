@@ -92,6 +92,18 @@ module Less2Sass
     end
   end
 
+  class EvaluationError < Less2SassError
+    def initialize(obj)
+      @klass = obj.class
+      @msg = obj if obj.is_a?(String)
+    end
+
+    def message
+      return "Cannot evaluate instance of #{@klass}. " + super unless @msg
+      "Cannot evaluate #{@msg}"
+    end
+  end
+
   class UnknownError < Less2SassError
     def message
       "Something unexpected just happened.\n" + super

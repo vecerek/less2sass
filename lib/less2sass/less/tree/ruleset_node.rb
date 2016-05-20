@@ -31,10 +31,8 @@ module Less2Sass
         #
         # @param (see Node#transform)
         # @return [Void]
-        def transform(env = nil)
-          env = Less2Sass::Less::Environment.new(env)
-          env.set_environment(@children)
-          env.build
+        def transform(parent_env = nil)
+          env = env(parent_env)
           super(env)
           @rules = env.get_ordered_child_nodes
           @children = @rules

@@ -27,7 +27,7 @@ module Less2Sass
         # @return [Boolean]
         def interpolation?
           return false unless [ElementNode, RuleNode].include?(@parent.class)
-          return !@parent.is_variable_definition? if @parent.is_a?(RuleNode)
+          return !@parent.variable_definition? if @parent.is_a?(RuleNode)
           true
         end
 
@@ -36,6 +36,11 @@ module Less2Sass
           variable = node(::Sass::Script::Tree::Variable.new(sass_name), line)
           variable = node(::Sass::Script::Tree::Interpolation.new(nil, variable, nil, false, false), line) if interpolation?
           variable
+        end
+
+        # @see RuleNode#eval
+        def eval
+          @env.lookup(@name)
         end
       end
     end

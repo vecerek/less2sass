@@ -38,10 +38,19 @@ module Less2Sass
           when 'false' then ::Sass::Script::Value::Bool.new(false)
           when 'null' then ::Sass::Script::Value::Null.new
           else
+            @value = add_spaces(@value) if ADD_SPACES.include?(@value)
             raise FeatureConversionError, self unless @value.respond_to?(:to_s)
             string = ::Sass::Script::Value::String.new(@value.to_s)
             node(::Sass::Script::Tree::Literal.new(string), line)
           end
+        end
+
+        private
+
+        ADD_SPACES = %w(and or)
+
+        def add_spaces(val)
+          " #{val} "
         end
       end
     end

@@ -18,6 +18,38 @@ module Less2Sass
           node(::Sass::Script::Tree::Operation.new(@operands[0].to_sass, @operands[1].to_sass, sass_operator), line)
         end
 
+        # @see RuleNode#eval
+        # @note Dimensions should be evaluated according to Less' rules.
+        # @return [::Sass::Script::Tree::Literal, DimensionNode]
+        def eval
+          ops = [@operands[0].eval, @operands[1].eval]
+          unit = ops[0].dimension if ops[0].is_a?(DimensionNode)
+          unit ||= ops[1].dimension if ops[1].is_a?(DimensionNode)
+          result = begin
+            case @op
+              when '+' then ops[0] + ops[1]
+              when '-' then ops[0] - ops[1]
+              when '*' then ops[0] * ops[1]
+              when '/' then ops[0] / ops[1]
+              when '%' then ops[0] % ops[1]
+              when 'and' then ops[0] && ops[1]
+              when 'or' then ops[0] || ops[1]
+              when '==' then ops[0] == ops[1]
+              when '!=' then ops[0] != ops[1]
+              when '>=' then ops[0] >= ops[1]
+              when '<=' then ops[0] <= ops[1]
+              when '>' then ops[0] > ops[1]
+              when '<' then ops[0] < ops[1]
+              else
+               raise EvaluationError, "operator #{@op}"
+            end
+          end
+          return result unless unit
+          dimension_node(result, unit)
+        end
+
+        private
+
         # A hash from operator strings to the corresponding token types.
         #
         # Copied from Sass' lexer
