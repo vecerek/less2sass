@@ -69,5 +69,5 @@ Even though the name of the gem is less_to_sass, the executable is used accordin
 
 ## Language differences
 
-There is an entire [wiki page] (https://github.com/vecerek/less2sass/wiki/Language-Differences), that deals with the language differences. It will be continuously updated as new releases of Less and Sass will be published.
+There is an entire [wiki page] (https://github.com/vecerek/less2sass/wiki/Less-vs.-Sass), that deals with the language differences. It will be continuously updated as new releases of Less and Sass will be published.
 The current version of the document describes the differences between Less v2.7.1 and Sass v3.4.21
