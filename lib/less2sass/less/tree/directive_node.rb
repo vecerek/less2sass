@@ -12,7 +12,10 @@ module Less2Sass
       #   - @supports
       #
       # The Sass equivalent is {::Sass::Tree::DirectiveNode}.
-      # @note Sits on a new line.
+      # @note - Sits on a new line.
+      #       - Its value(s) can't be variables - if variables
+      #         are specified, Less treats them as they were
+      #         {AnonymousNodes}.
       # @see Node
       class DirectiveNode < Node
         attr_accessor :name
