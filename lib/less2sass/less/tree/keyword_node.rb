@@ -18,10 +18,6 @@ module Less2Sass
           @value.to_s
         end
 
-        def empty?
-          @value.empty?
-        end
-
         # Returns a SassScript Value node.
         #
         # Usually will be called in case of a variable

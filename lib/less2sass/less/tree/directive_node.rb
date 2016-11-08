@@ -32,7 +32,7 @@ module Less2Sass
         end
 
         def value
-          @value.empty? ? [@name] : [@name + ' ', @value.to_s]
+          empty? ? [@name] : [@name + ' ', @value.to_s]
         end
       end
     end

@@ -203,6 +203,14 @@ module Less2Sass
           false
         end
 
+        # Checks, whether the value of @value - if present at all -
+        # is empty.
+        #
+        # @return [Boolean]
+        def empty?
+          @value ? @value.empty? : true
+        end
+
         protected
 
         # Sets up a node with the mandatory options (line, options).
