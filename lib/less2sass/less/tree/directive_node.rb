@@ -26,16 +26,49 @@ module Less2Sass
         attr_accessor :debugInfo
         attr_accessor :isRooted
 
-        # @return [::Sass::Tree::DirectiveNode]
+        # Less does not distinguish the @supports directive
+        # from the others, as it does with @media, as opposed to Sass.
+        # In case of the {DirectiveNode} represents a @supports directive,
+        # an {::Sass::Tree::SupportsNode} needs to be returned.
+        #
+        # Less does not support variables inside the @supports condition,
+        # so the node does not have to be evaluated. The condition
+        # is just parsed using the Sass parser and a {::Sass::Tree::SupportsNode}
+        # is created.
+        #
+        # @return [::Sass::Tree::DirectiveNode, ::Sass::Tree::SupportsNode]
         # @see Node#to_sass
         def to_sass
-          node = node(::Sass::Tree::DirectiveNode.new(value), line(:new))
+          if supports_directive?
+            node = node(::Sass::Tree::SupportsNode.new('supports', condition), line(:new))
+          else
+            node = node(::Sass::Tree::DirectiveNode.new(value), line(:new))
+          end
           @rules.rules.each { |c| node << c.to_sass } # Not all children should be passed
           node
         end
 
+        # Returns formatted value.
+        #
+        # @return [Array<String>]
         def value
           empty? ? [@name] : [@name + ' ', @value.to_s]
+        end
+
+        # Checks, whether the DirectiveNode is a SupportsNode.
+        #
+        # @return [Boolean]
+        def supports_directive?
+          @name == '@supports'
+        end
+
+        private
+
+        # Parses the @supports directive's condition.
+        #
+        # @return [::Sass::Supports::Condition]
+        def condition
+          ::Sass::SCSS::Parser.new(@value.to_s, '', nil).parse_supports_condition
         end
       end
     end
