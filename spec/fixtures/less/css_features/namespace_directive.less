@@ -1,0 +1,7 @@
+@protocol: 'http://';
+@domain: 'www.w3.org';
+@ns: xp;
+
+@namespace svg url(http://www.w3.org/2000/svg);
+@namespace url("@{protocol}www.w3.org/2000/svg");
+@namespace @ns url("@{protocol}@{domain}/2000/@{ns}");
