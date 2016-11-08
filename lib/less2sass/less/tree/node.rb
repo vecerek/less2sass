@@ -183,14 +183,9 @@ module Less2Sass
         #
         # @return [Boolean]
         def contains_variables?
-          variables = nil
-          each do |child|
-            if child.is_a?(VariableNode)
-              variables = true
-              break
-            end
+          any? do |child|
+            child.is_a?(VariableNode) || (child.is_a?(QuotedNode) && child.string_interpolation?)
           end
-          variables
         end
 
         # Checks, whether a node can be evaluable.

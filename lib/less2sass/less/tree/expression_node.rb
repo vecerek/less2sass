@@ -59,6 +59,14 @@ module Less2Sass
           self
         end
 
+        def to_s
+          if @value.kind_of?(Array)
+            @value.inject([]) { |arr, node| arr << node.to_s }.join(' ')
+          else
+            @value.to_s
+          end
+        end
+
         private
 
         LITERAL_PROPERTIES = %w(font transition).freeze

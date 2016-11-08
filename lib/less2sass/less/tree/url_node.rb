@@ -16,6 +16,24 @@ module Less2Sass
         def to_sass
           node(::Sass::Script::Tree::Funcall.new('url', [@value.to_sass], ::Sass::Util::NormalizedMap.new, nil, nil), line)
         end
+
+        def evaluable?
+          true
+        end
+
+        # Evaluates the url node's argument, which can be a quoted string
+        # containing variable interpolations that may be needed to evaluate.
+        #
+        # @see RuleNode#eval
+        # @return [UrlNode]
+        def eval
+          @value.eval
+          self
+        end
+
+        def to_s
+          "url(#{@value.to_s})"
+        end
       end
     end
   end
