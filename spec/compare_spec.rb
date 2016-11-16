@@ -4,7 +4,7 @@ require 'css_compare'
 
 RSpec.describe 'compare LESS with generated SASS' do
   CONTEXTS = Pathname.new('spec/fixtures/less')
-  PENDING = %w(bootstrap mixins).freeze
+  PENDING = %w(bootstrap mixins namespace_directive.less).freeze
 
   Dir.foreach(CONTEXTS) do |feature|
     next if %w(. ..).include?(feature)

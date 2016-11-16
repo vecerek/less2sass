@@ -31,7 +31,7 @@ module Less2Sass
         def to_sass
           if @value.is_a?(Array)
             # TODO: don't forget about interpolation. What if one of the expressions is a variable?
-            if @parent.is_variable_definition? || contains_variables?
+            if @parent.variable_definition? || contains_variables?
               elements = @value.inject([]) { |elements, elem| elements << elem.to_sass }
               node(::Sass::Script::Tree::ListLiteral.new(elements, :comma), line)
             else
@@ -46,6 +46,11 @@ module Less2Sass
           else
             @value.to_sass
           end
+        end
+
+        # @see RuleNode#eval
+        def eval
+          @value.eval
         end
       end
     end

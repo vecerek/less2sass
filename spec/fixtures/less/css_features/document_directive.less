@@ -1,0 +1,18 @@
+@document
+  /* Rules for a specific page */
+url(http://css-tricks.com/),
+
+  /* Rules for pages with a URL that begin with... */
+url-prefix(http://css-tricks.com/snippets/),
+
+  /* Rules for any page hosted on a domain */
+domain(css-tricks.com),
+
+  /* Rules for all secure pages */
+regexp("https:.*")
+{
+
+  /* Start styling */
+  body { font-family: Comic Sans; }
+
+}

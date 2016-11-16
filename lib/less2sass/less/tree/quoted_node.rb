@@ -26,6 +26,31 @@ module Less2Sass
           end
         end
 
+        # It is evaluable, since it can contain variable interpolations
+        # that need to be evaluated in case of need.
+        #
+        # @see Node#evaluable?
+        def evaluable?
+          true
+        end
+
+        # Evaluates the variable interpolations and replaces them
+        # with their real values.
+        #
+        # @see RuleNode#eval
+        # @return [QuotedNode]
+        def eval
+          if string_interpolation?
+            variables = @value.scan(VARIABLE_NAME).flatten
+            values = variables.inject({}) do |hash, var|
+              hash["@{#{var}}".to_sym] = @env.lookup("@#{var}").to_s
+              hash
+            end
+            values.each { |k,v| @value.gsub!(k.to_s, v) }
+          end
+          self
+        end
+
         # Returns the string's raw value without passing the type of quote.
         #
         # Sass has its own standards regarding the quotes, it should be in

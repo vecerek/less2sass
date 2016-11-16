@@ -37,6 +37,10 @@ module Less2Sass
           return subnode if subnode.is_a?(::Sass::Script::Tree::Literal)
           node(::Sass::Script::Tree::Literal.new(subnode), line)
         end
+
+        def to_s
+          @value
+        end
       end
     end
   end

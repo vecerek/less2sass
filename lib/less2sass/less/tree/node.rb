@@ -38,15 +38,15 @@ module Less2Sass
         # @return [Array<String>] referenced variable names
         attr_accessor :ref_vars
 
-        # The environment, where the nodes sits lexically.
-        # TODO: Consider to set a reference to the lexical scope (the environment) of the node.
+        # The environment, where the node sits lexically.
+        #
         # @return [Less2Sass::Less::Environment]
-        # attr_reader :env
+        attr_reader :env
 
         # The current line number the conversion process is at
         @@lines = 0
 
-        def initialize(parent)
+        def initialize(parent = nil)
           @children = []
           @parent = parent
           @creates_new_line = false
@@ -118,14 +118,15 @@ module Less2Sass
         # The position, where `#super` is called determines the walking order.
         # The standard should be post-order walk - transforming the child nodes
         # first and self as last.
+        # Sets a reference to the environment of the node. Can be nil, if sits
+        # in the global scope.
         #
         # Should be overridden by subclasses adding specific implementation.
         #
         # @param [Less2Sass::Less::Environment] env parent environment
         # @return [Void]
         def transform(env = nil)
-          #   TODO: Consider to set a reference to the lexical scope (the environment) of the node.
-          #   @env = env
+          @env = env
           @children.each { |c| c.transform(env) }
         end
 
@@ -182,14 +183,27 @@ module Less2Sass
         #
         # @return [Boolean]
         def contains_variables?
-          variables = nil
-          each do |child|
-            if child.is_a?(VariableNode)
-              variables = true
-              break
-            end
+          any? do |child|
+            child.is_a?(VariableNode) || (child.is_a?(QuotedNode) && child.string_interpolation?)
           end
-          variables
+        end
+
+        # Checks, whether a node can be evaluable.
+        # Useful when replacing variable nodes with their real value.
+        # E.g.: The features (i.e.: tv, screen, etc.) of a media node
+        # cannot be variables in Sass, as opposed to Less.
+        #
+        # @return [Boolean]
+        def evaluable?
+          false
+        end
+
+        # Checks, whether the value of @value - if present at all -
+        # is empty.
+        #
+        # @return [Boolean]
+        def empty?
+          @value ? @value.empty? : true
         end
 
         protected
@@ -205,6 +219,19 @@ module Less2Sass
           node.line = line if line
           node.options = options if node.class.method_defined?(:options=)
           node
+        end
+
+        def dimension_node(value, unit)
+          dimension = DimensionNode.new
+          dimension.value = value
+          dimension.unit = unit
+          dimension
+        end
+
+        def env(parent = nil, children = @children)
+          children = [children] unless children.is_a?(Array)
+          env = Less2Sass::Less::Environment.new(parent)
+          env.set_environment(children).build
         end
       end
     end

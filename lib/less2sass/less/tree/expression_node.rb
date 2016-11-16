@@ -12,7 +12,7 @@ module Less2Sass
       class ExpressionNode < Node
         attr_accessor :value
 
-        # @return [::Sass::Script::Tree::Literal, ::Sass::Script::Tree::ListLiteral, ::Sass::Tree::Node]
+        # @return [Array<String,::Sass::Script::Tree::Node>, ::Sass::Script::Tree::Node, ::Sass::Tree::Node]
         # @see Node#to_sass
         def to_sass
           if @value.is_a?(Array)
@@ -21,6 +21,8 @@ module Less2Sass
               multiword_keyword_argument
             elsif should_be_literal?
               @value.inject([]) { |value, elem| value << elem.to_s }.join(' ')
+            elsif media_condition?
+              @value.collect { |x| x.to_sass }
             else
               elements = @value.inject([]) do |value, elem|
                 node = elem.to_sass
@@ -33,6 +35,35 @@ module Less2Sass
             value = @value.to_sass
             return value unless value.is_a?(::Sass::Script::Value::Base)
             node(::Sass::Script::Tree::Literal.new(value), line)
+          end
+        end
+
+        def evaluable?
+          true
+        end
+
+        # Evaluates the {ExpressionNode}'s into depth = 1.
+        # May change later, we need this behavior for {MediaNode} feature
+        # evaluation.
+        #
+        # @see Node#eval
+        # @return [ExpressionNode]
+        def eval
+          if @value.kind_of?(Array)
+            @value.each_with_index do |node, i|
+              @value[i] = node.eval if node.evaluable?
+            end
+          else
+            @value = @value.eval if @value.evaluable?
+          end
+          self
+        end
+
+        def to_s
+          if @value.kind_of?(Array)
+            @value.inject([]) { |arr, node| arr << node.to_s }.join(' ')
+          else
+            @value.to_s
           end
         end
 
@@ -55,6 +86,15 @@ module Less2Sass
           grandparent = @parent.parent
           return false unless grandparent.is_a?(RuleNode)
           LITERAL_PROPERTIES.include?(grandparent.name.value) && !contains_variables?
+        end
+
+        # Checks, whether the expression is a {MediaNode} feature
+        # list.
+        #
+        # @return [Boolean]
+        def media_condition?
+          grandparent = @parent.parent
+          grandparent.is_a?(MediaNode) && (grandparent.features.eql?(@parent) || grandparent.features.include?(@parent))
         end
 
         # Creates a {::Sass::Script::Tree::ListLiteral} out of
